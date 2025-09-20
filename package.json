@@ -1,22 +1,57 @@
 {
   "name": "khedun-digital",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Khedun Digital - Where intelligent systems meet elegant design",
-  "main": "src/pages/index.html",
+  "main": "index.html",
   "scripts": {
-    "start": "live-server src/pages",
-    "test": "node tests/run-tests.js"
+    "start": "live-server --port=3000 --host=0.0.0.0",
+    "dev": "live-server --port=3000 --host=0.0.0.0 --open=/index.html",
+    "build": "npm run build:css && npm run build:js && npm run optimize",
+    "build:css": "postcss styles/main.css -o public/css/main.min.css --env production",
+    "build:js": "terser scripts/main.js -o public/js/main.min.js --compress --mangle",
+    "optimize": "imagemin src/assets/images/* --out-dir=public/images",
+    "test": "node tests/run-tests.js",
+    "lint": "htmlhint public/*.html && stylelint styles/**/*.css",
+    "format": "prettier --write .",
+    "preview": "live-server --port=4000 public"
   },
   "keywords": [
     "web",
     "automation",
     "ai",
     "marketing",
-    "digital-solutions"
+    "digital-solutions",
+    "saas",
+    "technology"
   ],
-  "author": "Kyle Khedun",
+  "author": "Kyle Khedun <kyle@khedun.digital>",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Khedun-Digital/Khedun-Digital-v1.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Khedun-Digital/Khedun-Digital-v1/issues"
+  },
+  "homepage": "https://khedun.digital",
   "devDependencies": {
-    "cheerio": "^1.1.0"
+    "cheerio": "^1.1.0",
+    "live-server": "^1.2.2",
+    "postcss": "^8.4.31",
+    "postcss-cli": "^10.1.0",
+    "cssnano": "^6.0.1",
+    "terser": "^5.24.0",
+    "imagemin": "^8.0.1",
+    "imagemin-cli": "^7.0.0",
+    "htmlhint": "^1.1.4",
+    "stylelint": "^15.11.0",
+    "prettier": "^3.0.3",
+    "eslint": "^8.52.0"
+  },
+  "dependencies": {
+    "aos": "^2.3.4",
+    "gsap": "^3.12.2",
+    "three": "^0.157.0",
+    "particles.js": "^2.0.0"
   }
 }

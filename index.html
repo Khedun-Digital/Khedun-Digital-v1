@@ -3,13 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Khedun Digital - Where intelligent systems meet elegant design. AI, automation, web development, and digital marketing solutions.">
+    <meta name="keywords" content="AI, automation, web development, digital marketing, South Africa, Johannesburg">
+    <meta name="author" content="Khedun Digital">
+    <meta property="og:title" content="Khedun Digital - Intelligent Digital Solutions">
+    <meta property="og:description" content="Transform your business with AI, automation, web development, and digital marketing solutions.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://khedun.digital">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Khedun Digital - Intelligent Digital Solutions">
+    <meta name="twitter:description" content="Transform your business with AI, automation, web development, and digital marketing solutions.">
     <title>Khedun Digital | Where intelligent systems meet elegant design</title>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Raleway:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="src/assets/styles/main.css">
-    <link rel="stylesheet" href="src/assets/styles/index.css">
-    <script src="src/assets/js/main.js"></script>
-    <script src="src/assets/js/reactbits.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/animations.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+    <!-- Tailwind Configuration -->
     <script>
         tailwind.config = {
             theme: {
@@ -19,23 +40,37 @@
                         burntorange: '#E95A0C',
                         darkorange: '#B76E00',
                         charcoal: '#1A1A1A',
-                        darkbg: '#0F0F0F'
+                        darkbg: '#0F0F0F',
+                        lightgray: '#2A2A2A',
+                        accent: '#FF6B35'
                     },
                     fontFamily: {
                         heading: ['Montserrat', 'sans-serif'],
                         body: ['Raleway', 'sans-serif']
                     },
                     animation: {
-                        glow: 'glow 2s ease-in-out infinite alternate',
-                        float: 'float 6s ease-in-out infinite'
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s ease-in-out infinite',
+                        'bounce-slow': 'bounce 2s infinite'
                     },
                     keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
                         glow: {
-                            '0%, 100%': { 
-                                'box-shadow': '0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 20px #E95A0C' 
+                            '0%, 100%': {
+                                'box-shadow': '0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 20px #E95A0C'
                             },
-                            '50%': { 
-                                'box-shadow': '0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 40px #E95A0C' 
+                            '50%': {
+                                'box-shadow': '0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 40px #E95A0C'
                             }
                         },
                         float: {
@@ -50,216 +85,181 @@
 </head>
 <body class="bg-charcoal text-white font-body">
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-darkbg bg-opacity-90 backdrop-blur-sm border-b border-burntorange">
-        <div class="max-w-7xl mx-auto flex justify-between items-center h-16 px-4 sm:px-8">
-            <div class="flex items-center">
-                <div class="flex-shrink-0 flex items-center">
-                        <div class="rounded-full bg-gold bg-opacity-10 p-1.5 flex items-center justify-center animate-glow">
-                            <img src="src/assets/images/khedun_digital_nav_icon.png" alt="Khedun Digital" class="w-10 h-10">
-                        </div>
-                        <span class="ml-3 text-xl font-heading font-semibold">Khedun Digital</span>
-                    </div>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-brand">
+                <div class="navbar-brand-icon">
+                    <img src="assets/images/khedun_digital_nav_icon.png" alt="Khedun Digital" class="w-8 h-8">
                 </div>
-                
-                <div class="hidden md:flex items-center space-x-4">
-                    <a href="#" class="text-white px-4 py-2 rounded-md hover:bg-gold hover:text-charcoal transition-colors">Home</a>
-                    <a href="#services" class="text-white px-4 py-2 rounded-md hover:bg-gold hover:text-charcoal transition-colors">Services</a>
-                    <a href="#about" class="text-white px-4 py-2 rounded-md hover:bg-gold hover:text-charcoal transition-colors">About</a>
-                    <a href="#contact" class="text-white px-4 py-2 rounded-md hover:bg-gold hover:text-charcoal transition-colors">Contact</a>
-                </div>
-                
-                <div class="md:hidden flex items-center">
-                    <button id="menu-btn" class="text-white">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
+                <span>Khedun Digital</span>
+            </a>
+
+            <nav class="navbar-nav">
+                <a href="#hero" class="hover-lift">Home</a>
+                <a href="#services" class="hover-lift">Services</a>
+                <a href="#about" class="hover-lift">About</a>
+                <a href="#contact" class="hover-lift">Contact</a>
+            </nav>
+
+            <button id="menu-btn" class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </div>
-        
-        <div id="mobile-menu" class="hidden md:hidden bg-darkbg">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#" class="text-white block px-4 py-2 rounded-md hover:bg-gold hover:text-charcoal transition-colors">Home</a>
-                <a href="#services" class="text-white block px-4 py-2 rounded-md hover:bg-gold hover:text-charcoal transition-colors">Services</a>
-                <a href="#about" class="text-white block px-4 py-2 rounded-md hover:bg-gold hover:text-charcoal transition-colors">About</a>
-                <a href="#contact" class="text-white block px-4 py-2 rounded-md hover:bg-gold hover:text-charcoal transition-colors">Contact</a>
-            </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-darkbg p-4">
+            <nav class="flex flex-col space-y-2">
+                <a href="#hero" class="text-white px-4 py-2 rounded-md hover:bg-gold hover:text-charcoal transition-colors">Home</a>
+                <a href="#services" class="text-white px-4 py-2 rounded-md hover:bg-gold hover:text-charcoal transition-colors">Services</a>
+                <a href="#about" class="text-white px-4 py-2 rounded-md hover:bg-gold hover:text-charcoal transition-colors">About</a>
+                <a href="#contact" class="text-white px-4 py-2 rounded-md hover:bg-gold hover:text-charcoal transition-colors">Contact</a>
+            </nav>
         </div>
     </nav>
     
+    <!-- Progress Bar -->
+    <div class="fixed top-0 left-0 w-full h-1 z-50">
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+
     <!-- Hero Section -->
-    <section class="pt-32 pb-24 px-4 relative overflow-hidden bg-gradient-to-b from-darkbg to-charcoal">
-        <div class="absolute inset-0 bg-circuit"></div>
-        <div class="max-w-7xl mx-auto relative z-10">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-12 md:mb-0">
-                    <h1 class="text-4xl md:text-6xl font-heading font-bold mb-6 leading-tight rb-reveal">
-                        Where intelligent systems meet <span class="text-gold">elegant design</span>
-                    </h1>
-                    <p class="text-xl text-gray-300 mb-8 max-w-2xl rb-reveal">
-                        Khedun Digital helps businesses scale through automation, AI, intelligent marketing, and seamless digital experiences.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#services" class="bg-gold hover:bg-opacity-90 text-charcoal font-semibold px-6 py-3 rounded-lg transition-all transform hover:scale-105">
-                            Explore Our Solutions
-                        </a>
-                        <a href="#contact" class="border border-gold hover:bg-gold hover:bg-opacity-10 text-gold font-semibold px-6 py-3 rounded-lg transition-all">
-                            Book Free Consultation
-                        </a>
-                    </div>
+    <section id="hero" class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="gradient-text reveal">
+                    Where intelligent systems meet <span class="text-gold">elegant design</span>
+                </h1>
+                <p class="reveal stagger-1">
+                    Khedun Digital helps businesses scale through automation, AI, intelligent marketing, and seamless digital experiences.
+                </p>
+                <div class="hero-cta reveal stagger-2">
+                    <a href="#services" class="btn btn-primary hover-lift">
+                        Explore Our Solutions
+                    </a>
+                    <a href="#contact" class="btn btn-secondary hover-scale">
+                        Book Free Consultation
+                    </a>
                 </div>
-                <div class="md:w-1/2 flex justify-center">
-                    <div class="relative">
-                        <div class="relative flex items-center justify-center">
-                            <div class="relative w-[32rem] h-[32rem] flex items-center justify-center animate-float">
-                                <img src="src/assets/images/khedun_digital_logo.png" alt="Khedun Digital Logo" class="w-full h-full object-contain" />
-                                <div class="absolute -bottom-4">
-                                    <svg class="w-16 h-16 text-burntorange" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                            </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-logo-container">
+                    <img src="assets/images/khedun_digital_logo.png" alt="Khedun Digital Logo" class="hero-logo">
+                    <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
+                        <div class="w-16 h-16 bg-burntorange rounded-full flex items-center justify-center animate-bounce">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+                            </svg>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-charcoal to-transparent"></div>
+
+        <!-- Particle Background -->
+        <div class="particles"></div>
     </section>
 
     <!-- Services Grid -->
-    <section id="services" class="py-20 px-4 bg-darkbg">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20 scroll-fade">
-                <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
-                    Integrated Digital Solutions
-                </h2>
-                <div class="h-1 w-24 bg-gold mx-auto mb-6"></div>
-                <p class="max-w-3xl mx-auto text-gray-300 text-lg">
+    <section id="services" class="section bg-darkbg">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Integrated Digital Solutions</h2>
+                <p class="section-subtitle">
                     Our unified service suite delivers cutting-edge technology solutions tailored to your business needs
                 </p>
             </div>
-            
-            <div class="service-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <div class="service-grid">
                 <!-- Web & UX Service Card -->
-                <div class="service-card group bg-charcoal rounded-xl overflow-hidden border border-gray-800 hover:border-gold transition-all duration-300 scroll-fade rb-reveal">
-                    <div class="p-8">
-                        <div class="mb-6 flex justify-center">
-                            <div class="relative">
-                                <div class="service-icon w-48 h-48 flex items-center justify-center relative">
-                                    <img src="src/assets/images/khedun_digital_web_logo.png" alt="Web & UX" class="w-full h-full">
-                                </div>
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-heading font-bold mb-3">Web & UX Design</h3>
-                        <p class="text-gray-400 mb-6">
-                            Transform your digital presence with intuitive interfaces and seamless user journeys.
-                        </p>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="text-xs bg-gold bg-opacity-10 text-gold px-3 py-1 rounded-full">UI Design</span>
-                            <span class="text-xs bg-gold bg-opacity-10 text-gold px-3 py-1 rounded-full">Figma</span>
-                            <span class="text-xs bg-gold bg-opacity-10 text-gold px-3 py-1 rounded-full">Web Dev</span>
-                        </div>
+                <div class="service-card reveal stagger-1">
+                    <div class="service-icon">
+                        <img src="assets/images/khedun_digital_web_logo.png" alt="Web & UX" class="w-16 h-16">
                     </div>
-                    <div class="px-6 py-4 bg-darkbg bg-opacity-50 border-t border-gray-800">
-                        <a href="src/pages/web.html" class="text-gold flex items-center justify-between font-medium group-hover:underline">
-                            <span>Explore Web Services</span>
-                            <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                            </svg>
-                        </a>
+                    <h3 class="text-xl font-heading font-bold mb-3">Web & UX Design</h3>
+                    <p class="text-gray-400 mb-6">
+                        Transform your digital presence with intuitive interfaces and seamless user journeys.
+                    </p>
+                    <div class="service-tags">
+                        <span class="service-tag">UI Design</span>
+                        <span class="service-tag">Figma</span>
+                        <span class="service-tag">Web Dev</span>
                     </div>
+                    <a href="pages/web.html" class="btn btn-secondary mt-6 w-full">
+                        Explore Web Services
+                        <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
                 </div>
-                
+
                 <!-- Marketing Service Card -->
-                <div class="service-card group bg-charcoal rounded-xl overflow-hidden border border-gray-800 hover:border-gold transition-all duration-300 scroll-fade delay-75 rb-reveal">
-                    <div class="p-8">
-                        <div class="mb-6 flex justify-center">
-                            <div class="relative">
-                                <div class="service-icon w-48 h-48 flex items-center justify-center relative">
-                                    <img src="src/assets/images/khedun_digital_marketing_logo.png" alt="Marketing" class="w-full h-full">
-                                </div>
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-heading font-bold mb-3">Data-Driven Marketing</h3>
-                        <p class="text-gray-400 mb-6">
-                            Reach your ideal customers with intelligent, personalized campaigns that deliver results.
-                        </p>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="text-xs bg-gold bg-opacity-10 text-gold px-3 py-1 rounded-full">SEO</span>
-                            <span class="text-xs bg-gold bg-opacity-10 text-gold px-3 py-1 rounded-full">PPC</span>
-                            <span class="text-xs bg-gold bg-opacity-10 text-gold px-3 py-1 rounded-full">Social Media</span>
-                        </div>
+                <div class="service-card reveal stagger-2">
+                    <div class="service-icon">
+                        <img src="assets/images/khedun_digital_marketing_logo.png" alt="Marketing" class="w-16 h-16">
                     </div>
-                    <div class="px-6 py-4 bg-darkbg bg-opacity-50 border-t border-gray-800">
-                        <a href="src/pages/marketing.html" class="text-gold flex items-center justify-between font-medium group-hover:underline">
-                            <span>Boost Your Marketing</span>
-                            <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                            </svg>
-                        </a>
+                    <h3 class="text-xl font-heading font-bold mb-3">Data-Driven Marketing</h3>
+                    <p class="text-gray-400 mb-6">
+                        Reach your ideal customers with intelligent, personalized campaigns that deliver results.
+                    </p>
+                    <div class="service-tags">
+                        <span class="service-tag">SEO</span>
+                        <span class="service-tag">PPC</span>
+                        <span class="service-tag">Social Media</span>
                     </div>
+                    <a href="pages/marketing.html" class="btn btn-secondary mt-6 w-full">
+                        Boost Your Marketing
+                        <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
                 </div>
-                
+
                 <!-- AI Service Card -->
-                <div class="service-card group bg-charcoal rounded-xl overflow-hidden border border-gray-800 hover:border-gold transition-all duration-300 scroll-fade delay-100 rb-reveal">
-                    <div class="p-8">
-                        <div class="mb-6 flex justify-center">
-                            <div class="relative">
-                                <div class="service-icon w-48 h-48 flex items-center justify-center relative">
-                                    <img src="src/assets/images/khedun_digital_ai_logo.png" alt="AI" class="w-full h-full">
-                                </div>
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-heading font-bold mb-3">Artificial Intelligence</h3>
-                        <p class="text-gray-400 mb-6">
-                            Leverage machine learning and predictive analytics for smarter business decisions.
-                        </p>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="text-xs bg-gold bg-opacity-10 text-gold px-3 py-1 rounded-full">Chatbots</span>
-                            <span class="text-xs bg-gold bg-opacity-10 text-gold px-3 py-1 rounded-full">Predictive Models</span>
-                            <span class="text-xs bg-gold bg-opacity-10 text-gold px-3 py-1 rounded-full">NLP</span>
-                        </div>
+                <div class="service-card reveal stagger-3">
+                    <div class="service-icon">
+                        <img src="assets/images/khedun_digital_ai_logo.png" alt="AI" class="w-16 h-16">
                     </div>
-                    <div class="px-6 py-4 bg-darkbg bg-opacity-50 border-t border-gray-800">
-                        <a href="src/pages/ai.html" class="text-gold flex items-center justify-between font-medium group-hover:underline">
-                            <span>Discover AI Solutions</span>
-                            <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                            </svg>
-                        </a>
+                    <h3 class="text-xl font-heading font-bold mb-3">Artificial Intelligence</h3>
+                    <p class="text-gray-400 mb-6">
+                        Leverage machine learning and predictive analytics for smarter business decisions.
+                    </p>
+                    <div class="service-tags">
+                        <span class="service-tag">Chatbots</span>
+                        <span class="service-tag">Predictive Models</span>
+                        <span class="service-tag">NLP</span>
                     </div>
+                    <a href="pages/ai.html" class="btn btn-secondary mt-6 w-full">
+                        Discover AI Solutions
+                        <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
                 </div>
-                
+
                 <!-- Automation Service Card -->
-                <div class="service-card group bg-charcoal rounded-xl overflow-hidden border border-gray-800 hover:border-gold transition-all duration-300 scroll-fade delay-150 rb-reveal">
-                    <div class="p-8">
-                        <div class="mb-6 flex justify-center">
-                            <div class="relative">
-                                <div class="service-icon w-48 h-48 flex items-center justify-center relative">
-                                    <img src="src/assets/images/khedun_digital_automation_logo.png" alt="Automation" class="w-full h-full">
-                                </div>
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-heading font-bold mb-3">Process Automation</h3>
-                        <p class="text-gray-400 mb-6">
-                            Streamline operations and reduce costs with intelligent workflow automation solutions.
-                        </p>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="text-xs bg-gold bg-opacity-10 text-gold px-3 py-1 rounded-full">RPA</span>
-                            <span class="text-xs bg-gold bg-opacity-10 text-gold px-3 py-1 rounded-full">Workflows</span>
-                            <span class="text-xs bg-gold bg-opacity-10 text-gold px-3 py-1 rounded-full">API Integration</span>
-                        </div>
+                <div class="service-card reveal stagger-4">
+                    <div class="service-icon">
+                        <img src="assets/images/khedun_digital_automation_logo.png" alt="Automation" class="w-16 h-16">
                     </div>
-                    <div class="px-6 py-4 bg-darkbg bg-opacity-50 border-t border-gray-800">
-                        <a href="src/pages/automation.html" class="text-gold flex items-center justify-between font-medium group-hover:underline">
-                            <span>Automate Your Business</span>
-                            <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                            </svg>
-                        </a>
+                    <h3 class="text-xl font-heading font-bold mb-3">Process Automation</h3>
+                    <p class="text-gray-400 mb-6">
+                        Streamline operations and reduce costs with intelligent workflow automation solutions.
+                    </p>
+                    <div class="service-tags">
+                        <span class="service-tag">RPA</span>
+                        <span class="service-tag">Workflows</span>
+                        <span class="service-tag">API Integration</span>
                     </div>
+                    <a href="pages/automation.html" class="btn btn-secondary mt-6 w-full">
+                        Automate Your Business
+                        <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
@@ -561,34 +561,21 @@
         </button>
     </div>
     
+    <!-- Main JavaScript -->
+    <script src="scripts/main.js"></script>
+
+    <!-- Optional: AOS (Animate On Scroll) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Mobile menu toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Fade-in on scroll functionality
-        function handleScrollFade() {
-            const fadeElements = document.querySelectorAll('.scroll-fade');
-            
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
-                    element.classList.add('fade-in');
-                }
+        // Initialize AOS if available
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                offset: 100
             });
         }
-        
-        // Initialize scroll event
-        window.addEventListener('scroll', handleScrollFade);
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', handleScrollFade);
     </script>
-    <script>ReactBits.reveal(".rb-reveal");</script>
 </body>
 </html>
