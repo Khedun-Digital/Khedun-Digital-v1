@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Atom Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: #1A1A1A;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .test-container {
+            padding: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Interactive Profile Card Test</h1>
+        <p>Testing the Khedun Digital interactive profile card component</p>
+
+        <div id="kd-profile-card" class="mt-8 mb-8"></div>
+
+        <div class="mt-8">
+            <button onclick="updateProfileInfo()" class="bg-yellow-500 text-black px-4 py-2 rounded mr-4 hover:bg-yellow-600">Update Info</button>
+            <button onclick="changeColors()" class="bg-orange-500 text-black px-4 py-2 rounded hover:bg-orange-600">Change Colors</button>
+        </div>
+    </div>
+
+    <script src="src/assets/js/atom.js"></script>
+    <script>
+        // Initialize the profile card component
+        if (typeof KDAtom !== 'undefined' && document.getElementById('kd-profile-card')) {
+            window.kdProfileCard = new KDAtom('kd-profile-card', {
+                interactive: true,
+                enableTilt: true,
+                enableMobileTilt: false
+            });
+        }
+
+        function updateProfileInfo() {
+            if (window.kdProfileCard) {
+                const services = [
+                    {
+                        name: "Khedun Digital",
+                        title: "AI & Automation Experts",
+                        description: "Revolutionizing business with cutting-edge AI and automation solutions."
+                    },
+                    {
+                        name: "Khedun Digital",
+                        title: "Digital Innovation Agency",
+                        description: "Transforming businesses through intelligent digital solutions and creative design."
+                    },
+                    {
+                        name: "Khedun Digital",
+                        title: "Tech Solutions Provider",
+                        description: "Delivering comprehensive technology solutions for modern businesses."
+                    }
+                ];
+                const randomInfo = services[Math.floor(Math.random() * services.length)];
+                window.kdProfileCard.updateInfo(randomInfo);
+            }
+        }
+
+        function changeColors() {
+            if (window.kdProfileCard) {
+                const colors = [
+                    { primary: '#FF6B6B', secondary: '#4ECDC4', accent: '#45B7D1' },
+                    { primary: '#96CEB4', secondary: '#FFEAA7', accent: '#DDA0DD' },
+                    { primary: '#74B9FF', secondary: '#A29BFE', accent: '#FD79A8' }
+                ];
+                const randomColors = colors[Math.floor(Math.random() * colors.length)];
+                // Update CSS custom properties
+                const root = document.documentElement;
+                root.style.setProperty('--color-primary', randomColors.primary);
+                root.style.setProperty('--color-secondary', randomColors.secondary);
+                root.style.setProperty('--color-accent', randomColors.accent);
+            }
+        }
+    </script>
+</body>
+</html>

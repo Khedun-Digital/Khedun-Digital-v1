@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/components.css">
     <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="src/assets/styles/atom.css">
 
     <!-- Favicon -->
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
@@ -147,14 +148,7 @@
             </div>
             <div class="hero-visual">
                 <div class="hero-logo-container">
-                    <img src="assets/images/khedun_digital_logo.png" alt="Khedun Digital Logo" class="hero-logo">
-                    <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
-                        <div class="w-16 h-16 bg-burntorange rounded-full flex items-center justify-center animate-bounce">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
-                            </svg>
-                        </div>
-                    </div>
+                    <div id="kd-profile-card" class="w-80 h-auto"></div>
                 </div>
             </div>
         </div>
@@ -321,7 +315,7 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-charcoal p-8 rounded-xl scroll-fade">
+                <div class="bg-charcoal p-8 rounded-xl scroll-fade hover-lift">
                     <div class="text-gold mb-4 flex">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -351,16 +345,16 @@
                     </div>
                 </div>
                 
-                <div class="bg-charcoal p-8 rounded-xl scroll-fade delay-75">
+                <div class="bg-charcoal p-8 rounded-xl scroll-fade delay-75 hover-lift">
                     <div class="text-gold mb-4 flex">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 极简风2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.极简风81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -467,7 +461,7 @@
                     </div>
                 </div>
                 
-                <div class="bg-charcoal p-8 rounded-xl scroll-fade">
+                <div class="bg-charcoal p-8 rounded-xl scroll-fade hover-lift">
                     <form class="space-y-6">
                         <div>
                             <label for="name" class="block text-gray-300 mb-2">Full Name</label>
@@ -514,13 +508,10 @@
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center mb-6 md:mb-0">
-                    <div class="rounded-full bg-gold bg-opacity-10 p-1.5 flex items-center justify-center">
-                        <div class="text-gold font-bold text-2xl font-heading">
-                            KD
-                            <span class="absolute mt-1 ml-0.5 text-xs text-burntorange">⚡</span>
-                        </div>
+                    <div class="w-12 h-12 mr-4">
+                        <img src="assets/images/khedun_digital_logo.png" alt="Khedun Digital Logo" class="w-full h-full object-contain rounded-lg">
                     </div>
-                    <span class="ml-3 text-lg font-heading font-semibold">Khedun Digital</span>
+                    <span class="text-lg font-heading font-semibold">Khedun Digital</span>
                 </div>
                 
                 <div class="flex space-x-6">
@@ -546,7 +537,7 @@
             </div>
             
             <div class="mt-10 pt-8 border-t border-gray-800 text-center">
-                <p class="text-gray-500">© 2023 Khedun Digital. All rights reserved.</p>
+                <p class="text-gray-500">© 2025 Khedun Digital. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -564,6 +555,9 @@
     <!-- Main JavaScript -->
     <script src="scripts/main.js"></script>
 
+    <!-- Profile Card Component -->
+    <script src="src/assets/js/atom.js"></script>
+
     <!-- Optional: AOS (Animate On Scroll) -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -575,6 +569,21 @@
                 once: true,
                 offset: 100
             });
+        }
+
+        // Initialize the profile card component
+        if (typeof KDAtom !== 'undefined' && document.getElementById('kd-profile-card')) {
+            console.log('Initializing KD Profile Card...');
+            try {
+                window.kdProfileCard = new KDAtom('kd-profile-card', {
+                    interactive: true,
+                    enableTilt: true,
+                    enableMobileTilt: false
+                });
+                console.log('KD Profile Card initialized successfully');
+            } catch (error) {
+                console.error('Error initializing KD Profile Card:', error);
+            }
         }
     </script>
 </body>

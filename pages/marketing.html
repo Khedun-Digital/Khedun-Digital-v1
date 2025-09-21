@@ -7,6 +7,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Raleway:wght@400;500&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/components.css">
+    <link rel="stylesheet" href="../styles/animations.css">
     <script>
         tailwind.config = {
             theme: {
@@ -174,10 +176,10 @@
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center mb-6 md:mb-0">
-                    <div class="rounded-full bg-gold bg-opacity-10 p-1.5 flex items-center justify-center">
-                        <div class="text-gold font-bold text-2xl font-heading">KD <span class="absolute mt-1 ml-0.5 text-xs text-burntorange">⚡</span></div>
+                    <div class="w-12 h-12 mr-4">
+                        <img src="../assets/images/khedun_digital_logo.png" alt="Khedun Digital Logo" class="w-full h-full object-contain rounded-lg">
                     </div>
-                    <span class="ml-3 text-lg font-heading font-semibold">Khedun Digital</span>
+                    <span class="text-lg font-heading font-semibold">Khedun Digital</span>
                 </div>
                 <div class="flex space-x-6">
                     <a href="#" class="text-gray-400 hover:text-gold transition-colors" aria-label="Twitter">
@@ -192,7 +194,7 @@
                 </div>
             </div>
             <div class="mt-10 pt-8 border-t border-gray-800 text-center">
-                <p class="text-gray-500">© 2023 Khedun Digital. All rights reserved.</p>
+                <p class="text-gray-500">© 2025 Khedun Digital. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -209,5 +211,7 @@
         }
     </script>
     <script src="../scripts/main.js"></script>
+    <script src="../src/assets/js/reactbits.js"></script>
+<script>ReactBits.reveal(".rb-reveal");</script>
 </body>
 </html>
