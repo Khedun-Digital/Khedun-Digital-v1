@@ -10,10 +10,55 @@
             background: #1A1A1A;
             color: white;
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
         .test-container {
-            padding: 50px;
+            padding: 20px;
             text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .test-container h1 {
+            margin-bottom: 1rem;
+        }
+        .test-container p {
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+        .test-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .test-buttons button {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #FFD700 0%, #E95A0C 100%);
+            color: #1A1A1A;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 44px;
+        }
+        .test-buttons button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+        @media (min-width: 768px) {
+            .test-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+            .test-buttons button {
+                padding: 0.75rem 2rem;
+            }
         }
     </style>
 </head>
@@ -24,9 +69,9 @@
 
         <div id="kd-profile-card" class="mt-8 mb-8"></div>
 
-        <div class="mt-8">
-            <button onclick="updateProfileInfo()" class="bg-yellow-500 text-black px-4 py-2 rounded mr-4 hover:bg-yellow-600">Update Info</button>
-            <button onclick="changeColors()" class="bg-orange-500 text-black px-4 py-2 rounded hover:bg-orange-600">Change Colors</button>
+        <div class="test-buttons">
+            <button onclick="updateProfileInfo()">Update Info</button>
+            <button onclick="changeColors()">Change Colors</button>
         </div>
     </div>
 

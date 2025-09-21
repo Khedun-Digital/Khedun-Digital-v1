@@ -32,9 +32,13 @@ class KDAtom {
     }
 
     init() {
+        // Detect mobile/touch devices
+        this.isMobile = this.detectMobile();
+        this.isTouchDevice = this.detectTouchDevice();
+
         this.createStructure();
         this.setupEventListeners();
-        console.log('KD Profile Card initialized successfully');
+        console.log(`KD Profile Card initialized successfully ${this.isMobile ? '(Mobile)' : '(Desktop)'}`);
     }
 
     createStructure() {
@@ -73,33 +77,48 @@ class KDAtom {
         const contactBtn = this.container.querySelector('.kd-profile-contact');
 
         if (profileCard) {
-            // Mouse tracking for interactive glow effect
-            profileCard.addEventListener('mouseenter', (e) => {
-                const rect = profileCard.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+            // Only enable complex mouse tracking on desktop devices
+            if (!this.isTouchDevice && !this.isMobile) {
+                // Mouse tracking for interactive glow effect
+                profileCard.addEventListener('mouseenter', (e) => {
+                    const rect = profileCard.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
 
-                profileCard.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
-                profileCard.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
-            });
+                    profileCard.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+                    profileCard.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
+                });
 
-            profileCard.addEventListener('mousemove', (e) => {
-                const rect = profileCard.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+                profileCard.addEventListener('mousemove', (e) => {
+                    const rect = profileCard.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
 
-                profileCard.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
-                profileCard.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
-            });
+                    profileCard.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+                    profileCard.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
+                });
 
-            profileCard.addEventListener('mouseleave', () => {
-                profileCard.style.removeProperty('--mouse-x');
-                profileCard.style.removeProperty('--mouse-y');
-            });
+                profileCard.addEventListener('mouseleave', () => {
+                    profileCard.style.removeProperty('--mouse-x');
+                    profileCard.style.removeProperty('--mouse-y');
+                });
+            } else {
+                // Simple hover effect for mobile/touch devices
+                profileCard.addEventListener('touchstart', () => {
+                    profileCard.classList.add('mobile-active');
+                });
+
+                profileCard.addEventListener('touchend', () => {
+                    setTimeout(() => {
+                        profileCard.classList.remove('mobile-active');
+                    }, 150);
+                });
+            }
         }
 
         if (contactBtn) {
-            contactBtn.addEventListener('click', () => {
+            contactBtn.addEventListener('click', (e) => {
+                e.preventDefault();
                 console.log('Contact Khedun Digital clicked');
                 // Scroll to contact section or open modal
                 const contactSection = document.getElementById('contact');
@@ -114,6 +133,15 @@ class KDAtom {
         this.companyInfo = { ...this.companyInfo, ...updates };
         this.createStructure();
         this.setupEventListeners();
+    }
+
+    detectMobile() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+               window.innerWidth <= 768;
+    }
+
+    detectTouchDevice() {
+        return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
     }
 
     destroy() {
