@@ -381,6 +381,7 @@ button:focus {
     /* Service cards mobile layout */
     .service-card {
         margin-bottom: 1.5rem;
+        max-width: 100%;
     }
 
     /* Navigation mobile optimization */

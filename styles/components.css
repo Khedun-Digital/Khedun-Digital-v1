@@ -149,19 +149,21 @@
 
 /* Service Cards */
 .service-grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--space-xl);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
     margin-top: var(--space-xl);
 }
 
 .service-card {
     background: var(--color-light);
     border-radius: var(--radius-xl);
-    padding: var(--space-xl);
+    padding: var(--space-lg);
     border: 1px solid rgba(102, 102, 102, 0.3);
     transition: all var(--transition-base);
     position: relative;
     overflow: hidden;
+    max-width: 320px;
+    margin: 0 auto;
 }
 
 .service-card::before {
@@ -383,6 +385,11 @@
 .service-grid {
     grid-template-columns: 1fr;
     gap: var(--space-lg);
+}
+
+.service-card {
+    max-width: 100%;
+    margin: 0 auto;
 }
 
     .footer-content {

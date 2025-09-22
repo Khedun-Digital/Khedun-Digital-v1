@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="styles/components.css">
     <link rel="stylesheet" href="styles/animations.css">
     <link rel="stylesheet" href="src/assets/styles/atom.css">
+    <link rel="stylesheet" href="orb.css">
 
     <!-- Favicon -->
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
@@ -148,7 +149,30 @@
             </div>
             <div class="hero-visual">
                 <div class="hero-logo-container flex justify-center">
-                    <div id="kd-minimal-card" class="w-full max-w-sm mx-auto"></div>
+                    <div class="orb-container">
+                        <div class="wrap">
+                            <div class="c"></div>
+                            <div class="c"></div>
+                            <div class="c"></div>
+                            <div class="c"></div>
+                            <div class="c"></div>
+                            <div class="c"></div>
+                            <div class="c"></div>
+                            <div class="c"></div>
+                            <div class="c"></div>
+                            <div class="c"></div>
+                            <div class="c"></div>
+                            <div class="c"></div>
+                            <div class="c"></div>
+                            <div class="c"></div>
+                            <div class="c"></div>
+                            <div class="c"></div>
+                            <div class="c"></div>
+                            <div class="c"></div>
+                            <div class="c"></div>
+                            <div class="c"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -168,66 +192,93 @@
             </div>
 
             <div class="service-grid">
-                <script>
-                    // Service data with links
-                    const servicesData = [
-                        {
-                            avatar: "assets/images/khedun_digital_web_logo.png",
-                            name: "Web & UX Design",
-                            description: "Transform your digital presence with intuitive interfaces and seamless user journeys.",
-                            tags: ["UI Design", "Figma", "Web Dev"],
-                            link: "pages/web.html",
-                            linkText: "Explore Web Services"
-                        },
-                        {
-                            avatar: "assets/images/khedun_digital_marketing_logo.png",
-                            name: "Data-Driven Marketing",
-                            description: "Reach your ideal customers with intelligent, personalized campaigns that deliver results.",
-                            tags: ["SEO", "PPC", "Social Media"],
-                            link: "pages/marketing.html",
-                            linkText: "Boost Your Marketing"
-                        },
-                        {
-                            avatar: "assets/images/khedun_digital_ai_logo.png",
-                            name: "Artificial Intelligence",
-                            description: "Leverage machine learning and predictive analytics for smarter business decisions.",
-                            tags: ["Chatbots", "Predictive Models", "NLP"],
-                            link: "pages/ai.html",
-                            linkText: "Discover AI Solutions"
-                        },
-                        {
-                            avatar: "assets/images/khedun_digital_automation_logo.png",
-                            name: "Process Automation",
-                            description: "Streamline operations and reduce costs with intelligent workflow automation solutions.",
-                            tags: ["RPA", "Workflows", "API Integration"],
-                            link: "pages/automation.html",
-                            linkText: "Automate Your Business"
-                        }
-                    ];
+                <!-- Web & UX Service Card -->
+                <div class="service-card reveal stagger-1">
+                    <div class="service-icon">
+                        <img src="assets/images/khedun_digital_web_logo.png" alt="Web & UX" class="w-16 h-16">
+                    </div>
+                    <h3 class="text-xl font-heading font-bold mb-3">Web & UX Design</h3>
+                    <p class="text-gray-400 mb-6">
+                        Transform your digital presence with intuitive interfaces and seamless user journeys.
+                    </p>
+                    <div class="service-tags">
+                        <span class="service-tag">UI Design</span>
+                        <span class="service-tag">Figma</span>
+                        <span class="service-tag">Web Dev</span>
+                    </div>
+                    <a href="pages/web.html" class="btn btn-secondary mt-6 w-full" target="_blank">
+                        Explore Web Services
+                        <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
 
-                    const serviceGrid = document.querySelector('.service-grid');
-                    servicesData.forEach((service, index) => {
-                        const card = KDProfileCard.createServiceCard(service);
-                        card.className = `kd-profile-card reveal stagger-${index + 1}`;
+                <!-- Marketing Service Card -->
+                <div class="service-card reveal stagger-2">
+                    <div class="service-icon">
+                        <img src="assets/images/khedun_digital_marketing_logo.png" alt="Marketing" class="w-16 h-16">
+                    </div>
+                    <h3 class="text-xl font-heading font-bold mb-3">Data-Driven Marketing</h3>
+                    <p class="text-gray-400 mb-6">
+                        Reach your ideal customers with intelligent, personalized campaigns that deliver results.
+                    </p>
+                    <div class="service-tags">
+                        <span class="service-tag">SEO</span>
+                        <span class="service-tag">PPC</span>
+                        <span class="service-tag">Social Media</span>
+                    </div>
+                    <a href="pages/marketing.html" class="btn btn-secondary mt-6 w-full" target="_blank">
+                        Boost Your Marketing
+                        <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
 
-                        // Add click handler for the card
-                        card.addEventListener('click', () => {
-                            window.open(service.link, '_blank');
-                        });
+                <!-- AI Service Card -->
+                <div class="service-card reveal stagger-3">
+                    <div class="service-icon">
+                        <img src="assets/images/khedun_digital_ai_logo.png" alt="AI" class="w-16 h-16">
+                    </div>
+                    <h3 class="text-xl font-heading font-bold mb-3">Artificial Intelligence</h3>
+                    <p class="text-gray-400 mb-6">
+                        Leverage machine learning and predictive analytics for smarter business decisions.
+                    </p>
+                    <div class="service-tags">
+                        <span class="service-tag">Chatbots</span>
+                        <span class="service-tag">Predictive Models</span>
+                        <span class="service-tag">NLP</span>
+                    </div>
+                    <a href="pages/ai.html" class="btn btn-secondary mt-6 w-full" target="_blank">
+                        Discover AI Solutions
+                        <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
 
-                        // Add button for accessibility
-                        const button = document.createElement('button');
-                        button.className = 'kd-profile-contact mt-4';
-                        button.textContent = service.linkText;
-                        button.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                            window.open(service.link, '_blank');
-                        });
-
-                        card.appendChild(button);
-                        serviceGrid.appendChild(card);
-                    });
-                </script>
+                <!-- Automation Service Card -->
+                <div class="service-card reveal stagger-4">
+                    <div class="service-icon">
+                        <img src="assets/images/khedun_digital_automation_logo.png" alt="Automation" class="w-16 h-16">
+                    </div>
+                    <h3 class="text-xl font-heading font-bold mb-3">Process Automation</h3>
+                    <p class="text-gray-400 mb-6">
+                        Streamline operations and reduce costs with intelligent workflow automation solutions.
+                    </p>
+                    <div class="service-tags">
+                        <span class="service-tag">RPA</span>
+                        <span class="service-tag">Workflows</span>
+                        <span class="service-tag">API Integration</span>
+                    </div>
+                    <a href="pages/automation.html" class="btn btn-secondary mt-6 w-full" target="_blank">
+                        Automate Your Business
+                        <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
