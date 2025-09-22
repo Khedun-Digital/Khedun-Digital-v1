@@ -12,7 +12,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 100;
 }
 
 .navbar-container {
@@ -325,8 +325,8 @@
 
     /* Mobile hero section adjustments */
     .hero {
-        padding-top: 5rem; /* Extra space for mobile navbar */
-        min-height: calc(100vh - 5rem); /* Account for navbar height */
+        padding-top: 6rem; /* Extra space for mobile navbar */
+        min-height: calc(100vh - 6rem); /* Account for navbar height */
     }
 
     .hero-content {
@@ -340,6 +340,24 @@
         flex-direction: column;
         gap: var(--space-md);
     }
+
+    /* Service pages mobile adjustments */
+    section[class*="pt-40"] {
+        padding-top: 6rem !important;
+    }
+}
+
+/* Extra Small Mobile Devices */
+@media (max-width: 360px) {
+    .hero {
+        padding-top: 7rem; /* Even more space on very small screens */
+        min-height: calc(100vh - 7rem);
+    }
+
+    section[class*="pt-40"] {
+        padding-top: 7rem !important;
+    }
+}
 
     .service-grid {
         grid-template-columns: 1fr;
