@@ -60,10 +60,15 @@
     transition: all var(--transition-base);
 }
 
-.navbar-nav a:hover {
+    .navbar-nav a:hover {
     background: rgba(255, 215, 0, 0.1);
     color: var(--color-primary);
 }
+
+    /* Ensure navbar is always on top on mobile */
+    .navbar {
+        z-index: 1001 !important;
+    }
 
 .mobile-menu-toggle {
     display: none;
@@ -321,12 +326,17 @@
 
     .mobile-menu-toggle {
         display: block;
+
+    /* Ensure navbar height is consistent on mobile */
+    .navbar-container {
+        height: 5rem !important;
+    }
     }
 
     /* Mobile hero section adjustments */
     .hero {
-        padding-top: 6rem; /* Extra space for mobile navbar */
-        min-height: calc(100vh - 6rem); /* Account for navbar height */
+        padding-top: 7rem; /* Extra space for mobile navbar */
+        min-height: calc(100vh - 7rem); /* Account for navbar height */
     }
 
     .hero-content {
@@ -342,27 +352,38 @@
     }
 
     /* Service pages mobile adjustments */
-    section[class*="pt-40"] {
-        padding-top: 6rem !important;
+    section.pt-40 {
+        padding-top: 7rem !important;
+    }
+
+    /* More specific selector for service pages */
+    .bg-gradient-to-b.from-charcoal.to-black {
+        padding-top: 7rem !important;
     }
 }
 
 /* Extra Small Mobile Devices */
 @media (max-width: 360px) {
     .hero {
-        padding-top: 7rem; /* Even more space on very small screens */
-        min-height: calc(100vh - 7rem);
+        padding-top: 8rem; /* Even more space on very small screens */
+        min-height: calc(100vh - 8rem);
     }
 
-    section[class*="pt-40"] {
-        padding-top: 7rem !important;
+    section.pt-40 {
+        padding-top: 8rem !important;
+    }
+
+    /* More specific selector for service pages */
+    .bg-gradient-to-b.from-charcoal.to-black {
+        padding-top: 8rem !important;
     }
 }
 
-    .service-grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-lg);
-    }
+/* Service Grid Mobile */
+.service-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+}
 
     .footer-content {
         flex-direction: column;
