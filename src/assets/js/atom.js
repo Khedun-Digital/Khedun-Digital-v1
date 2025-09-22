@@ -1,9 +1,37 @@
 /**
- * Khedun Digital - Interactive Profile Card Component
- * Professional company profile showcase with animations
+ * Khedun Digital - Modern Profile Card Components
+ * Inspired by reactbits.dev ProfileCard
  */
 
-class KDAtom {
+// Profile Card Factory for Service Listings
+class KDProfileCard {
+    static createServiceCard(options = {}) {
+        const { avatar, name, description, tags = [] } = options;
+
+        const card = document.createElement('div');
+        card.className = 'kd-profile-card';
+
+        const avatarHtml = avatar ?
+            `<div class="kd-profile-avatar"><img src="${avatar}" alt="${name}"></div>` :
+            `<div class="kd-profile-avatar"><div class="w-full h-full bg-gradient-to-br from-gold to-burntorange flex items-center justify-center rounded-lg"><span class="text-2xl font-bold text-charcoal">${name.charAt(0)}</span></div></div>`;
+
+        const tagsHtml = tags.length > 0 ?
+            `<div class="kd-profile-tags">${tags.map(tag => `<span class="kd-profile-tag">${tag}</span>`).join('')}</div>` :
+            '';
+
+        card.innerHTML = `
+            ${avatarHtml}
+            <div class="kd-profile-name">${name}</div>
+            <div class="kd-profile-description">${description}</div>
+            ${tagsHtml}
+        `;
+
+        return card;
+    }
+}
+
+// Minimal Hero Card Component
+class KDMinimalCard {
     constructor(containerId, options = {}) {
         this.container = document.getElementById(containerId);
         if (!this.container) {
@@ -12,144 +40,70 @@ class KDAtom {
         }
 
         this.options = {
+            avatar: options.avatar || 'assets/images/khedun_digital_logo.png',
+            name: options.name || 'Khedun Digital',
             interactive: options.interactive !== false,
-            enableTilt: options.enableTilt !== false,
-            enableMobileTilt: options.enableMobileTilt !== false,
             ...options
-        };
-
-        this.companyInfo = {
-            name: "Khedun Digital",
-            title: "Digital Innovation Agency",
-            handle: "@khedundigital",
-            status: "Available",
-            description: "Transforming businesses through AI, automation, web development, and intelligent digital marketing solutions.",
-            contactText: "Get Started",
-            avatarUrl: "assets/images/khedun_digital_logo.png"
         };
 
         this.init();
     }
 
     init() {
-        // Detect mobile/touch devices
-        this.isMobile = this.detectMobile();
-        this.isTouchDevice = this.detectTouchDevice();
-
         this.createStructure();
         this.setupEventListeners();
-        console.log(`KD Profile Card initialized successfully ${this.isMobile ? '(Mobile)' : '(Desktop)'}`);
+        console.log('KD Minimal Card initialized successfully');
     }
 
     createStructure() {
         this.container.innerHTML = '';
 
-        // Create profile card container
-        const cardContainer = document.createElement('div');
-        cardContainer.className = 'kd-profile-card';
+        const card = document.createElement('div');
+        card.className = 'kd-minimal-card';
 
-        // Create main profile card
-        const profileCard = document.createElement('div');
-        profileCard.className = 'kd-profile-main';
-
-        profileCard.innerHTML = `
-            <div class="kd-profile-avatar">
-                <img src="${this.companyInfo.avatarUrl}" alt="${this.companyInfo.name} Logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNDAiIGZpbGw9InVybCgjZ3JhZGllbnQpIi8+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6I0ZGRDcwMDtzdG9wLW9wYWNpdHk6MSIgLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNFRTk1QTBDc3RvcC1vcGFjaXR5OjEiIC8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHRleHQgeD0iNTAiIHk9IjQ1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiMxQTFBMSIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPktEPC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSI2NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEwIiBmaWxsPSIjRkZGRkZGIiBmb250LXdlaWdodD0ibm9ybWFsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ESUdJVEFMPC90ZXh0Pjwvc3ZnPg=='">
+        card.innerHTML = `
+            <div class="kd-minimal-avatar">
+                <img src="${this.options.avatar}" alt="${this.options.name} Logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNDAiIGZpbGw9InVybCgjZ3JhZGllbnQpIi8+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6I0ZGRDcwMDtzdG9wLW9wYWNpdHk6MSIgLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNFRTk1QTBDc3RvcC1vcGFjaXR5OjEiIC8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHRleHQgeD0iNTAiIHk9IjQ1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiMxQTFBMSIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPktEPC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSI2NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEwIiBmaWxsPSIjRkZGRkZGIiBmb250LXdlaWdodD0ibm9ybWFsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5ESUdJVEFMPC90ZXh0Pjwvc3ZnPg=='">
             </div>
-            <div class="kd-profile-name">${this.companyInfo.name}</div>
-            <div class="kd-profile-title">${this.companyInfo.title}</div>
-            <div class="kd-profile-status">
-                <span>${this.companyInfo.status}</span>
-            </div>
-            <div class="kd-profile-description">${this.companyInfo.description}</div>
-            <button class="kd-profile-contact" type="button">${this.companyInfo.contactText}</button>
+            <div class="kd-minimal-name">${this.options.name}</div>
         `;
 
-        // Assemble the structure
-        cardContainer.appendChild(profileCard);
-        this.container.appendChild(cardContainer);
+        this.container.appendChild(card);
     }
 
     setupEventListeners() {
         if (!this.options.interactive) return;
 
-        const profileCard = this.container.querySelector('.kd-profile-main');
-        const contactBtn = this.container.querySelector('.kd-profile-contact');
+        const card = this.container.querySelector('.kd-minimal-card');
 
-        if (profileCard) {
-            // Only enable complex mouse tracking on desktop devices
-            if (!this.isTouchDevice && !this.isMobile) {
-                // Mouse tracking for interactive glow effect
-                profileCard.addEventListener('mouseenter', (e) => {
-                    const rect = profileCard.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
+        if (card) {
+            // Mouse tracking for subtle glow effect
+            card.addEventListener('mouseenter', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
 
-                    profileCard.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
-                    profileCard.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
-                });
-
-                profileCard.addEventListener('mousemove', (e) => {
-                    const rect = profileCard.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-
-                    profileCard.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
-                    profileCard.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
-                });
-
-                profileCard.addEventListener('mouseleave', () => {
-                    profileCard.style.removeProperty('--mouse-x');
-                    profileCard.style.removeProperty('--mouse-y');
-                });
-            } else {
-                // Simple hover effect for mobile/touch devices
-                profileCard.addEventListener('touchstart', () => {
-                    profileCard.classList.add('mobile-active');
-                });
-
-                profileCard.addEventListener('touchend', () => {
-                    setTimeout(() => {
-                        profileCard.classList.remove('mobile-active');
-                    }, 150);
-                });
-            }
-        }
-
-        if (contactBtn) {
-            contactBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                console.log('Contact Khedun Digital clicked');
-                // Scroll to contact section or open modal
-                const contactSection = document.getElementById('contact');
-                if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: 'smooth' });
-                }
+                card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+                card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
             });
-        }
-    }
 
-    updateInfo(updates) {
-        this.companyInfo = { ...this.companyInfo, ...updates };
-        this.createStructure();
-        this.setupEventListeners();
-    }
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
 
-    detectMobile() {
-        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-               window.innerWidth <= 768;
-    }
+                card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+                card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
+            });
 
-    detectTouchDevice() {
-        return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-    }
-
-    destroy() {
-        if (this.container) {
-            this.container.innerHTML = '';
+            card.addEventListener('mouseleave', () => {
+                card.style.removeProperty('--mouse-x');
+                card.style.removeProperty('--mouse-y');
+            });
         }
     }
 }
 
-// Global function for easy initialization
-window.KDAtom = KDAtom;
+// Global functions for easy initialization
+window.KDProfileCard = KDProfileCard;
+window.KDMinimalCard = KDMinimalCard;

@@ -1,6 +1,6 @@
 /* ==========================================
-   KHEDUN DIGITAL - INTERACTIVE PROFILE CARD
-   Professional company profile showcase
+   KHEDUN DIGITAL - PROFILE CARD COMPONENTS
+   Modern profile cards inspired by reactbits.dev
    ========================================== */
 
 /* CSS Custom Properties */
@@ -426,11 +426,329 @@
     transition: all 0.2s ease;
 }
 
+/* ==========================================
+   MODERN PROFILE CARD COMPONENT
+   Inspired by reactbits.dev ProfileCard
+   ========================================== */
+
+/* Profile Card Base Styles */
+.kd-profile-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        0 2px 8px rgba(255, 215, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+
+/* Profile Card Hover Effects */
+.kd-profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255, 215, 0, 0.1) 0%,
+            transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    border-radius: 16px;
+}
+
+.kd-profile-card:hover::before {
+    opacity: 1;
+}
+
+.kd-profile-card:hover {
+    transform: translateY(-4px) rotateX(5deg);
+    border-color: var(--text-primary);
+    box-shadow:
+        0 12px 40px rgba(255, 215, 0, 0.15),
+        0 4px 16px rgba(0, 0, 0, 0.1);
+    background: rgba(26, 26, 26, 0.98);
+}
+
+/* Profile Card Avatar */
+.kd-profile-avatar {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1rem;
+    border-radius: 12px;
+    border: 2px solid var(--card-border);
+    padding: 4px;
+    background:
+        linear-gradient(135deg,
+            rgba(255, 215, 0, 0.2) 0%,
+            rgba(233, 90, 12, 0.1) 100%);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.kd-profile-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.kd-profile-avatar::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(45deg, var(--text-primary), var(--text-secondary));
+    border-radius: 12px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.kd-profile-card:hover .kd-profile-avatar {
+    transform: scale(1.1);
+}
+
+.kd-profile-card:hover .kd-profile-avatar::after {
+    opacity: 1;
+}
+
+/* Profile Card Content */
+.kd-profile-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.kd-profile-card:hover .kd-profile-name {
+    color: #FFD700;
+}
+
+.kd-profile-description {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.kd-profile-card:hover .kd-profile-description {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Profile Card Tags */
+.kd-profile-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.kd-profile-tag {
+    background: rgba(255, 215, 0, 0.1);
+    color: var(--text-primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid var(--card-border);
+    transition: all 0.3s ease;
+}
+
+.kd-profile-card:hover .kd-profile-tag {
+    background: rgba(255, 215, 0, 0.2);
+    border-color: var(--text-primary);
+}
+
+/* Minimal Hero Profile Card */
+.kd-minimal-card {
+    background: rgba(26, 26, 26, 0.9);
+    border: 2px solid var(--card-border);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    backdrop-filter: blur(15px);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        0 0 80px rgba(255, 215, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.kd-minimal-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255, 215, 0, 0.05) 0%,
+            transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    border-radius: 20px;
+}
+
+.kd-minimal-card:hover::before {
+    opacity: 1;
+}
+
+.kd-minimal-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--text-primary);
+    box-shadow:
+        0 25px 80px rgba(255, 215, 0, 0.2),
+        0 0 100px rgba(255, 215, 0, 0.1);
+}
+
+.kd-minimal-avatar {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    border: 3px solid var(--card-border);
+    padding: 3px;
+    background:
+        linear-gradient(135deg,
+            rgba(255, 215, 0, 0.3) 0%,
+            rgba(233, 90, 12, 0.2) 100%);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.kd-minimal-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.kd-minimal-card:hover .kd-minimal-avatar {
+    transform: scale(1.1);
+}
+
+.kd-minimal-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.kd-minimal-card:hover .kd-minimal-name {
+    color: #FFD700;
+}
+
+/* Animations */
+@keyframes subtleFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+.kd-profile-card {
+    animation: subtleFloat 6s ease-in-out infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .kd-profile-card {
+        padding: 1.25rem;
+        border-radius: 12px;
+    }
+
+    .kd-profile-avatar {
+        width: 56px;
+        height: 56px;
+    }
+
+    .kd-profile-name {
+        font-size: 1.125rem;
+    }
+
+    .kd-profile-description {
+        font-size: 0.8rem;
+    }
+
+    .kd-minimal-card {
+        padding: 1.5rem;
+    }
+
+    .kd-minimal-avatar {
+        width: 70px;
+        height: 70px;
+    }
+
+    .kd-minimal-name {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .kd-profile-card {
+        padding: 1rem;
+    }
+
+    .kd-profile-avatar {
+        width: 48px;
+        height: 48px;
+    }
+
+    .kd-profile-name {
+        font-size: 1rem;
+    }
+
+    .kd-profile-description {
+        font-size: 0.75rem;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .kd-profile-card,
+    .kd-minimal-card {
+        animation: none;
+    }
+
+    .kd-profile-card:hover,
+    .kd-minimal-card:hover {
+        transform: none;
+    }
+}
+
 /* Print Styles */
 @media print {
     .kd-profile-card,
-    .kd-profile-main,
-    .kd-profile-avatar {
+    .kd-minimal-card,
+    .kd-profile-avatar,
+    .kd-minimal-avatar {
         background: white !important;
         color: black !important;
         box-shadow: none !important;
