@@ -188,9 +188,9 @@ ISC © Kyle Khedun
 ## 📞 Contact
 
 - **Website**: https://khedun.digital
-- **Email**: hello@khedun.digital
-- **Phone**: +27 11 123 4567
-- **Address**: 123 Innovation Street, Sandton, Johannesburg, South Africa
+- **Email**: kylekhedun@gmail.com
+- **Phone**: +27 73 037 2160
+- **Address**: Chase Valley, Pietermaritzburg, KZN, South Africa
 
 ---
 

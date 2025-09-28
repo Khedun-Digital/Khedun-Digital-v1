@@ -30,9 +30,23 @@ export function createOrbAnimator(canvas, overrides = {}) {
         projectionScale: 0.294,
         perspective: 3.5,
         shadowColor: 'rgba(255, 200, 120, 0.35)',
-            resizeTarget: null
+        resizeTarget: null
     };
     Object.assign(settings, overrides);
+
+    const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+    const smallViewport = window.innerWidth < 768;
+    const prefersReducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let reduceMotion = prefersReducedMotionQuery.matches;
+
+    if (!Object.prototype.hasOwnProperty.call(overrides, 'particleCount') && (coarsePointer || smallViewport)) {
+        settings.particleCount = Math.max(600, Math.round(settings.particleCount * 0.55));
+        settings.baseSize = Number((settings.baseSize * 0.9).toFixed(2));
+    }
+
+    if (!Object.prototype.hasOwnProperty.call(overrides, 'twinkle') && (coarsePointer || smallViewport)) {
+        settings.twinkle = Number((settings.twinkle * 0.8).toFixed(2));
+    }
 
     const particles = new Array(settings.particleCount);
 
@@ -70,6 +84,14 @@ export function createOrbAnimator(canvas, overrides = {}) {
     let viewHeight = 0;
     let deviceRatio = 1;
 
+    const subscribe = (mediaQuery, handler) => {
+        if (typeof mediaQuery.addEventListener === 'function') {
+            mediaQuery.addEventListener('change', handler);
+        } else if (typeof mediaQuery.addListener === 'function') {
+            mediaQuery.addListener(handler);
+        }
+    };
+
     const resize = () => {
         const rect = canvas.getBoundingClientRect();
         viewWidth = rect.width;
@@ -82,6 +104,10 @@ export function createOrbAnimator(canvas, overrides = {}) {
         canvas.width = viewWidth * deviceRatio;
         canvas.height = viewHeight * deviceRatio;
         ctx.setTransform(deviceRatio, 0, 0, deviceRatio, 0, 0);
+
+        if (reduceMotion) {
+            drawParticles(0);
+        }
     };
 
     const rotateY = (point, angle) => {
@@ -119,21 +145,19 @@ export function createOrbAnimator(canvas, overrides = {}) {
     let animationFrame = 0;
     let time = 0;
 
-    const render = () => {
-        animationFrame = window.requestAnimationFrame(render);
+    function drawParticles(timeFactor = 0) {
         if (!viewWidth || !viewHeight) {
             return;
         }
 
-        time += settings.spinSpeed;
         ctx.clearRect(0, 0, viewWidth, viewHeight);
 
-        const rotationY = time * settings.yawFactor;
-        const rotationX = Math.sin(time * settings.tiltFrequency) * settings.tiltAmplitude;
+        const rotationY = timeFactor * settings.yawFactor;
+        const rotationX = Math.sin(timeFactor * settings.tiltFrequency) * settings.tiltAmplitude;
 
         for (let i = 0; i < particles.length; i += 1) {
             const particle = particles[i];
-            const twinkle = 1 + Math.sin(time * 2.2 + particle.phase) * settings.twinkle * 0.2;
+            const twinkle = 1 + Math.sin(timeFactor * 2.2 + particle.phase) * settings.twinkle * 0.2;
 
             const rotatedY = rotateY(particle.base, rotationY);
             const rotated = rotateX(rotatedY, rotationX);
@@ -152,9 +176,59 @@ export function createOrbAnimator(canvas, overrides = {}) {
         }
 
         ctx.globalAlpha = 1;
+    }
+
+    const animate = () => {
+        if (reduceMotion) {
+            animationFrame = 0;
+            drawParticles(0);
+            return;
+        }
+
+        if (!viewWidth || !viewHeight) {
+            animationFrame = window.requestAnimationFrame(animate);
+            return;
+        }
+
+        time += settings.spinSpeed;
+        drawParticles(time);
+        animationFrame = window.requestAnimationFrame(animate);
     };
 
-    render();
+    const startAnimation = () => {
+        if (reduceMotion) {
+            drawParticles(0);
+            return;
+        }
+
+        if (!animationFrame) {
+            time = 0;
+            drawParticles(time);
+            animationFrame = window.requestAnimationFrame(animate);
+        }
+    };
+
+    const stopAnimation = () => {
+        if (animationFrame) {
+            window.cancelAnimationFrame(animationFrame);
+            animationFrame = 0;
+        }
+    };
+
+    const handleMotionChange = (event) => {
+        reduceMotion = event.matches;
+        if (reduceMotion) {
+            stopAnimation();
+            drawParticles(0);
+        } else {
+            stopAnimation();
+            startAnimation();
+        }
+    };
+
+    subscribe(prefersReducedMotionQuery, handleMotionChange);
+
+    startAnimation();
 
     window.addEventListener('resize', resize);
     let resizeObserver;
@@ -165,12 +239,15 @@ export function createOrbAnimator(canvas, overrides = {}) {
 
     return {
         destroy() {
-            if (animationFrame) {
-                window.cancelAnimationFrame(animationFrame);
-            }
+            stopAnimation();
             window.removeEventListener('resize', resize);
             if (resizeObserver) {
                 resizeObserver.disconnect();
+            }
+            if (typeof prefersReducedMotionQuery.removeEventListener === 'function') {
+                prefersReducedMotionQuery.removeEventListener('change', handleMotionChange);
+            } else if (typeof prefersReducedMotionQuery.removeListener === 'function') {
+                prefersReducedMotionQuery.removeListener(handleMotionChange);
             }
         },
         settings

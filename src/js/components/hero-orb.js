@@ -54,7 +54,9 @@ class KdHeroOrb extends HTMLElement {
             return;
         }
         const { hostSize, spinSpeed, twinkle } = this._collectOptions();
-        this.style.setProperty('--hero-orb-size', `${hostSize}px`);
+        if (hostSize) {
+            this.style.setProperty('--hero-orb-size', `${hostSize}px`);
+        }
         this._controller = createOrbAnimator(this._canvas, {
             spinSpeed,
             twinkle,
@@ -70,10 +72,16 @@ class KdHeroOrb extends HTMLElement {
     }
 
     _collectOptions() {
+        const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+        const sizeAttr = parseFloat(this.getAttribute('size'));
+        const hostSize = Number.isFinite(sizeAttr) && sizeAttr > 0 ? sizeAttr : null;
+        const spinAttr = parseFloat(this.getAttribute('spin-speed'));
+        const twinkleAttr = parseFloat(this.getAttribute('twinkle'));
+
         return {
-            hostSize: parseFloat(this.getAttribute('size')) || 400,
-            spinSpeed: parseFloat(this.getAttribute('spin-speed')) || 0.011,
-            twinkle: parseFloat(this.getAttribute('twinkle')) || 0.55
+            hostSize,
+            spinSpeed: Number.isFinite(spinAttr) ? spinAttr : (coarsePointer ? 0.008 : 0.011),
+            twinkle: Number.isFinite(twinkleAttr) ? twinkleAttr : (coarsePointer ? 0.45 : 0.55)
         };
     }
 }

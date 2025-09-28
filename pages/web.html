@@ -97,12 +97,13 @@
         </div>
     </nav>
 
+    <main id="main-content">
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-background"></div>
         <div class="container">
             <div class="text-center">
-                <img src="../assets/images/khedun_digital_web_logo.png" alt="KD Web" class="w-64 h-64 mx-auto mb-8 animate-pulseSlow reveal">
+                <img src="../assets/images/khedun_digital_web_logo.png" alt="KD Web" class="hero-logo-large mx-auto mb-6 animate-pulseSlow reveal" loading="lazy" decoding="async">
                 <h1 class="text-4xl md:text-6xl font-heading font-bold mb-6 reveal">Interfaces built for elegance and function.</h1>
                 <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto reveal">We create websites and design systems that scale beautifully.</p>
                 <div class="flex flex-wrap justify-center gap-4 reveal">
@@ -116,6 +117,7 @@
         </div>
         <div class="particles"></div>
     </section>
+
 
     <!-- Services Section -->
     <section id="services" class="section bg-darkbg">
@@ -229,23 +231,48 @@
     </section>
 
     <!-- Portfolio Section -->
-    <section class="py-20 px-4 bg-black bg-opacity-40" id="portfolio">
-        <div class="max-w-7xl mx-auto" data-aos="fade-up">
-            <h2 class="text-3xl md:text-4xl font-heading font-bold text-center mb-12">Our Work</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
-                <div class="bg-charcoal p-6 rounded-lg" data-aos="fade-up" data-aos-delay="100">
-                    <iframe src="https://nightwing617.github.io" class="w-full h-[600px] mb-4 rounded" loading="lazy"></iframe>
-                    <p class="font-semibold">Penny Marshall</p>
-                    <p class="text-gray-400 text-sm">Portfolio</p>
-                    <p class="text-gray-500 text-xs mt-1">Showcase website for Penny Marshall.</p>
-                    <a href="https://nightwing617.github.io" target="_blank" class="text-gold underline mt-2 inline-block">Visit Site</a>
-                </div>
-                <div class="bg-charcoal p-6 rounded-lg" data-aos="fade-up" data-aos-delay="200">
-                    <iframe src="https://nightwing617.github.io/dr-y-sookoo-website-v2/" class="w-full h-[600px] mb-4 rounded" loading="lazy"></iframe>
-                    <p class="font-semibold">Dr Y. Sookoo</p>
-                    <p class="text-gray-400 text-sm">Medical Practice</p>
-                    <p class="text-gray-500 text-xs mt-1">Website for Dr. Y. Sookoo.</p>
-                    <a href="https://nightwing617.github.io/dr-y-sookoo-website-v2/" target="_blank" class="text-gold underline mt-2 inline-block">Visit Site</a>
+    <section class="py-24 px-4 bg-black bg-opacity-40 website-showcase" id="portfolio" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold text-center mb-4">Our Work</h2>
+            <p class="text-center text-gray-400 max-w-3xl mx-auto mb-12">Scroll through live previews of recent builds across construction, services, and healthcare. Tap any frame to explore the full site.</p>
+            <div class="campaign-carousel website-carousel">
+                <div class="campaign-carousel__track">
+                    <div class="campaign-carousel__slide">
+                        <iframe src="https://khedun-digital.github.io/Fastmove-Boreholes-v1/" title="Fastmove Boreholes website preview" loading="lazy"></iframe>
+                        <a href="https://khedun-digital.github.io/Fastmove-Boreholes-v1/" class="carousel-slide-link" target="_blank" rel="noopener" aria-label="Open Fastmove Boreholes website"></a>
+                    </div>
+                    <div class="campaign-carousel__slide">
+                        <iframe src="https://khedun-digital.github.io/Fastmove-Carpenters-v1/" title="Fastmove Carpenters website preview" loading="lazy"></iframe>
+                        <a href="https://khedun-digital.github.io/Fastmove-Carpenters-v1/" class="carousel-slide-link" target="_blank" rel="noopener" aria-label="Open Fastmove Carpenters website"></a>
+                    </div>
+                    <div class="campaign-carousel__slide">
+                        <iframe src="https://khedun-digital.github.io/Fastmove-Plumbing-v1/" title="Fastmove Plumbing website preview" loading="lazy"></iframe>
+                        <a href="https://khedun-digital.github.io/Fastmove-Plumbing-v1/" class="carousel-slide-link" target="_blank" rel="noopener" aria-label="Open Fastmove Plumbing website"></a>
+                    </div>
+                    <div class="campaign-carousel__slide">
+                        <iframe src="https://nightwing617.github.io" title="Penny Marshall website preview" loading="lazy"></iframe>
+                        <a href="https://nightwing617.github.io" class="carousel-slide-link" target="_blank" rel="noopener" aria-label="Open Penny Marshall website"></a>
+                    </div>
+                    <div class="campaign-carousel__slide">
+                        <iframe src="https://nightwing617.github.io/dr-y-sookoo-website-v2/" title="Dr. Y. Sookoo website preview" loading="lazy"></iframe>
+                        <a href="https://nightwing617.github.io/dr-y-sookoo-website-v2/" class="carousel-slide-link" target="_blank" rel="noopener" aria-label="Open Dr. Y. Sookoo website"></a>
+                    </div>
+                    <!-- Duplicate slides for seamless loop -->
+                    <div class="campaign-carousel__slide" aria-hidden="true">
+                        <iframe src="https://khedun-digital.github.io/Fastmove-Boreholes-v1/" title="Fastmove Boreholes website preview" loading="lazy"></iframe>
+                    </div>
+                    <div class="campaign-carousel__slide" aria-hidden="true">
+                        <iframe src="https://khedun-digital.github.io/Fastmove-Carpenters-v1/" title="Fastmove Carpenters website preview" loading="lazy"></iframe>
+                    </div>
+                    <div class="campaign-carousel__slide" aria-hidden="true">
+                        <iframe src="https://khedun-digital.github.io/Fastmove-Plumbing-v1/" title="Fastmove Plumbing website preview" loading="lazy"></iframe>
+                    </div>
+                    <div class="campaign-carousel__slide" aria-hidden="true">
+                        <iframe src="https://nightwing617.github.io" title="Penny Marshall website preview" loading="lazy"></iframe>
+                    </div>
+                    <div class="campaign-carousel__slide" aria-hidden="true">
+                        <iframe src="https://nightwing617.github.io/dr-y-sookoo-website-v2/" title="Dr. Y. Sookoo website preview" loading="lazy"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
@@ -281,6 +308,7 @@
         <a href="mailto:hello@khedun.digital" class="bg-gold text-charcoal font-semibold px-8 py-3 rounded-lg hover:shadow-lg transform hover:scale-105 transition-all">Book a Free Consult</a>
     </section>
 
+    </main>
     <footer class="bg-charcoal py-12 px-4 border-t border-gray-800">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center">

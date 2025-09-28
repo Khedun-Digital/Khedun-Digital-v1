@@ -37,6 +37,177 @@
         }
     </script>
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <style>
+        .marketing-hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background: linear-gradient(180deg, #0b0c0e 0%, #14161a 45%, #07080a 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .marketing-hero__sheet {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #0c0d10 0%, #2d3137 38%, #1a1c21 62%, #08090b 100%);
+            z-index: 0;
+        }
+
+        .marketing-hero__texture {
+            position: absolute;
+            inset: -220%;
+            background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.06) 0px 1px, transparent 1px 5px);
+            opacity: 0.18;
+            mix-blend-mode: screen;
+            animation: marketing-texture-pan 26s linear infinite;
+            z-index: 1;
+        }
+
+        .marketing-hero__sheen {
+            position: absolute;
+            inset: -10% 0 0 0;
+            background: linear-gradient(110deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.25) 48%, rgba(255, 255, 255, 0) 68%);
+            mix-blend-mode: screen;
+            opacity: 0.45;
+            animation: marketing-sheen-slide 11s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .marketing-hero__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(12, 13, 16, 0) 0%, rgba(12, 13, 16, 0.82) 100%);
+            z-index: 2;
+        }
+
+        .marketing-hero__glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 58%);
+            mix-blend-mode: screen;
+            opacity: 0.4;
+            z-index: 2;
+        }
+
+        .marketing-hero__edge {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));
+            z-index: 2;
+        }
+
+        .marketing-hero__edge--top {
+            top: 0;
+            opacity: 0.45;
+        }
+
+        .marketing-hero__edge--bottom {
+            bottom: 0;
+            opacity: 0.18;
+        }
+
+        .marketing-hero__content {
+            position: relative;
+            z-index: 3;
+        }
+
+        .marketing-hero__logo {
+            display: inline-block;
+            margin-bottom: clamp(1.75rem, 5vw, 3rem);
+        }
+
+        .marketing-hero__logo-badge {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(16px, 2.8vw, 28px);
+            border-radius: 32px;
+            background: linear-gradient(160deg, rgba(15, 17, 21, 0.98) 0%, rgba(30, 32, 37, 0.96) 42%, rgba(6, 7, 9, 0.98) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 -1px 0 rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(16px);
+            overflow: hidden;
+        }
+
+        .marketing-hero__logo-badge::before,
+        .marketing-hero__logo-badge::after {
+            content: '';
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .marketing-hero__logo-badge::before {
+            inset: 10%;
+            border-radius: 24px;
+            background: radial-gradient(circle at 35% 30%, rgba(255, 214, 102, 0.18) 0%, rgba(255, 214, 102, 0) 60%),
+                        radial-gradient(circle at 75% 70%, rgba(233, 90, 12, 0.16) 0%, rgba(233, 90, 12, 0) 62%);
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .marketing-hero__logo-badge::after {
+            inset: -2px;
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            mix-blend-mode: screen;
+            opacity: 0.5;
+            z-index: 2;
+        }
+
+        .marketing-hero__logo-img {
+            position: relative;
+            z-index: 1;
+            width: clamp(160px, 21vw, 220px);
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 12px 26px rgba(0, 0, 0, 0.6));
+        }
+
+        @keyframes marketing-texture-pan {
+            0% {
+                transform: translate3d(0, 0, 0) rotate(8deg);
+            }
+            100% {
+                transform: translate3d(-180px, 0, 0) rotate(8deg);
+            }
+        }
+
+        @keyframes marketing-sheen-slide {
+            0% {
+                transform: translate3d(-70%, 0, 0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.5;
+            }
+            60% {
+                opacity: 0.45;
+            }
+            100% {
+                transform: translate3d(70%, 0, 0);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .marketing-hero__sheen {
+                opacity: 0.35;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .marketing-hero {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            }
+
+            .marketing-hero__texture {
+                opacity: 0.15;
+            }
+        }
+    </style>
 </head>
 <body class="bg-charcoal text-white font-body">
     <!-- Navigation -->
@@ -73,14 +244,47 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="pt-40 pb-24 px-4 relative bg-gradient-to-b from-charcoal to-black overflow-hidden">
-        <div class="absolute inset-0 pointer-events-none bg-gradient-to-tr from-charcoal via-black to-charcoal opacity-60"></div>
-        <div class="max-w-7xl mx-auto relative z-10 flex flex-col items-center text-center" data-aos="fade-up">
-            <img src="../assets/images/khedun_digital_marketing_logo.png" alt="KD Marketing" class="w-48 h-48 md:w-64 md:h-64 mb-6 animate-pulseSlow">
+    <main id="main-content">
+        <!-- Hero Section -->
+    <section class="marketing-hero pt-40 pb-24 px-4 relative bg-gradient-to-b from-charcoal to-black overflow-hidden">
+        <div class="marketing-hero__sheet"></div>
+        <div class="marketing-hero__texture"></div>
+        <div class="marketing-hero__sheen"></div>
+        <div class="marketing-hero__edge marketing-hero__edge--top"></div>
+        <div class="marketing-hero__edge marketing-hero__edge--bottom"></div>
+        <div class="marketing-hero__overlay"></div>
+        <div class="marketing-hero__glow"></div>
+        <div class="max-w-7xl mx-auto marketing-hero__content flex flex-col items-center text-center" data-aos="fade-up">
+            <div class="marketing-hero__logo">
+                <div class="marketing-hero__logo-badge">
+                    <img src="../assets/images/khedun_digital_marketing_logo.png" alt="KD Marketing" class="marketing-hero__logo-img animate-pulseSlow" loading="lazy" decoding="async">
+                </div>
+            </div>
             <h1 class="text-3xl md:text-5xl lg:text-6xl font-heading font-bold mb-4 rb-reveal">Data-Driven Marketing</h1>
             <p class="text-lg md:text-xl text-gray-300 max-w-2xl mb-8">Leverage AI and analytics to grow your business with targeted, intelligent campaigns.</p>
             <a href="#contact" class="bg-gold text-charcoal font-semibold px-8 py-3 rounded-lg transform hover:scale-105 hover:shadow-lg transition-all">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Campaigns Carousel -->
+    <section class="py-20 px-4 bg-black bg-opacity-40" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold text-center mb-12">Campaigns that move the needle</h2>
+            <div class="campaign-carousel">
+                <div class="campaign-carousel__track">
+                    <img src="../assets/images/marketingpromo_1.jpeg" alt="Marketing campaign promo 1" class="campaign-carousel__slide">
+                    <img src="../assets/images/marketingpromo_2.jpeg" alt="Marketing campaign promo 2" class="campaign-carousel__slide">
+                    <img src="../assets/images/marketingpromo_3.jpeg" alt="Marketing campaign promo 3" class="campaign-carousel__slide">
+                    <img src="../assets/images/marketingpromo_4.jpeg" alt="Marketing campaign promo 4" class="campaign-carousel__slide">
+                    <img src="../assets/images/marketingpromo_5.png" alt="Marketing campaign promo 5" class="campaign-carousel__slide">
+                    <!-- Duplicate slides for seamless loop -->
+                    <img src="../assets/images/marketingpromo_1.jpeg" alt="Marketing campaign promo 1" aria-hidden="true" class="campaign-carousel__slide">
+                    <img src="../assets/images/marketingpromo_2.jpeg" alt="Marketing campaign promo 2" aria-hidden="true" class="campaign-carousel__slide">
+                    <img src="../assets/images/marketingpromo_3.jpeg" alt="Marketing campaign promo 3" aria-hidden="true" class="campaign-carousel__slide">
+                    <img src="../assets/images/marketingpromo_4.jpeg" alt="Marketing campaign promo 4" aria-hidden="true" class="campaign-carousel__slide">
+                    <img src="../assets/images/marketingpromo_5.png" alt="Marketing campaign promo 5" aria-hidden="true" class="campaign-carousel__slide">
+                </div>
+            </div>
         </div>
     </section>
 
@@ -169,9 +373,10 @@
     <!-- CTA -->
     <section id="contact" class="py-20 px-4 bg-black bg-opacity-40 text-center" data-aos="fade-up">
         <h2 class="text-3xl md:text-4xl font-heading font-bold mb-6">Ready to Grow with Data?</h2>
-        <a href="mailto:hello@khedun.digital" class="bg-gold text-charcoal font-semibold px-8 py-3 rounded-lg hover:shadow-lg transform hover:scale-105 transition-all">Book a Free Consult</a>
+        <a href="mailto:kylekhedun@gmail.com" class="bg-gold text-charcoal font-semibold px-8 py-3 rounded-lg hover:shadow-lg transform hover:scale-105 transition-all">Book a Free Consult</a>
     </section>
 
+    </main>
     <footer class="bg-charcoal py-12 px-4 border-t border-gray-800">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center">

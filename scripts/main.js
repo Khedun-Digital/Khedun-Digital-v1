@@ -7,6 +7,7 @@
 
 class KhedunDigital {
     constructor() {
+        this.closeMobileMenu = null;
         this.init();
     }
 
@@ -33,32 +34,75 @@ class KhedunDigital {
     setupNavigation() {
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        const body = document.body;
 
         if (menuBtn && mobileMenu) {
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                menuBtn.setAttribute('aria-expanded',
-                    menuBtn.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
-                );
+            menuBtn.setAttribute('aria-controls', 'mobile-menu');
+            menuBtn.setAttribute('aria-expanded', 'false');
+
+            const setMenuState = (isOpen) => {
+                mobileMenu.classList.toggle('hidden', !isOpen);
+                menuBtn.setAttribute('aria-expanded', String(isOpen));
+                body.classList.toggle('no-scroll', isOpen);
+            };
+
+            const toggleMenu = () => {
+                const isOpen = !mobileMenu.classList.contains('hidden');
+                setMenuState(!isOpen);
+            };
+
+            const closeMenu = () => {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    setMenuState(false);
+                }
+            };
+
+            menuBtn.addEventListener('click', (event) => {
+                event.preventDefault();
+                toggleMenu();
             });
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => closeMenu());
+            });
+
+            window.addEventListener('resize', this.debounce(() => {
+                if (window.innerWidth >= 768) {
+                    closeMenu();
+                }
+            }, 150));
+
+            this.closeMobileMenu = closeMenu;
         }
 
-        // Smooth scrolling for navigation links
+        // Smooth scrolling for navigation links with offset so content isn't hidden behind the nav
+        const navbar = document.querySelector('nav');
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = document.querySelector(anchor.getAttribute('href'));
+                const href = anchor.getAttribute('href');
+
+                if (!href || href === '#') {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
+
+                const target = document.querySelector(href);
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    e.preventDefault();
+                    const navHeight = navbar ? navbar.getBoundingClientRect().height : 0;
+                    const offset = navHeight + 16; // small buffer to keep section headers visible
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
                     });
                 }
             });
         });
 
         // Navbar background on scroll
-        const navbar = document.querySelector('nav');
         if (navbar) {
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) {
@@ -73,15 +117,51 @@ class KhedunDigital {
     // Scroll-based effects
     setupScrollEffects() {
         let ticking = false;
+        const heroVisual = document.querySelector('.hero-visual');
+        const parallaxPreference = window.matchMedia('(pointer: fine)');
+        const reducedMotionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        const subscribe = (mediaQuery, handler) => {
+            if (typeof mediaQuery.addEventListener === 'function') {
+                mediaQuery.addEventListener('change', handler);
+            } else if (typeof mediaQuery.addListener === 'function') {
+                mediaQuery.addListener(handler);
+            }
+        };
+
+        let parallaxEnabled = parallaxPreference.matches && !reducedMotionPreference.matches;
+
+        const resetParallax = () => {
+            if (heroVisual) {
+                heroVisual.style.transform = '';
+            }
+        };
+
+        subscribe(parallaxPreference, (event) => {
+            parallaxEnabled = event.matches && !reducedMotionPreference.matches;
+            if (!parallaxEnabled) {
+                resetParallax();
+            }
+        });
+
+        subscribe(reducedMotionPreference, (event) => {
+            parallaxEnabled = parallaxPreference.matches && !event.matches;
+            if (!parallaxEnabled) {
+                resetParallax();
+            }
+        });
 
         const updateScrollEffects = () => {
             const scrollY = window.scrollY;
 
             // Parallax effect for hero section
-            const heroVisual = document.querySelector('.hero-visual');
             if (heroVisual) {
-                const speed = scrollY * 0.5;
-                heroVisual.style.transform = `translateY(${speed}px)`;
+                if (parallaxEnabled) {
+                    const speed = scrollY * 0.35;
+                    heroVisual.style.transform = `translateY(${speed}px)`;
+                } else if (heroVisual.style.transform) {
+                    heroVisual.style.transform = '';
+                }
             }
 
             // Progress indicator
@@ -106,22 +186,32 @@ class KhedunDigital {
 
     // Animation setup
     setupAnimations() {
-        // Add CSS classes for animations
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+
+        if (prefersReducedMotion) {
+            document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+                el.classList.add('active');
+            });
+            return;
+        }
+
+        // Add CSS classes for animations with gentle staggering
         const animatedElements = document.querySelectorAll('.service-card, .testimonial-card, .section-header');
 
         animatedElements.forEach((element, index) => {
-            element.style.animationDelay = `${index * 0.1}s`;
+            element.style.animationDelay = `${Math.min(index * 0.08, 0.8)}s`;
         });
 
         // Typewriter effect for hero text
-        this.setupTypewriter();
+        this.setupTypewriter(isCoarsePointer ? 140 : 100);
 
         // Floating animation for logo
-        this.setupFloatingElements();
+        this.setupFloatingElements(isCoarsePointer);
     }
 
     // Typewriter effect
-    setupTypewriter() {
+    setupTypewriter(speed = 100) {
         const typewriterElements = document.querySelectorAll('.typewriter');
 
         typewriterElements.forEach(element => {
@@ -140,21 +230,30 @@ class KhedunDigital {
                         element.style.borderRight = 'none';
                     }, 1000);
                 }
-            }, 100);
+            }, speed);
         });
     }
 
     // Floating elements
-    setupFloatingElements() {
+    setupFloatingElements(disableForCoarsePointer = false) {
         const floatingElements = document.querySelectorAll('.float');
 
         floatingElements.forEach((element, index) => {
-            element.style.animationDelay = `${index * 0.5}s`;
+            if (disableForCoarsePointer) {
+                element.style.animation = 'none';
+            } else {
+                element.style.animationDelay = `${index * 0.5}s`;
+            }
         });
     }
 
     // Intersection Observer for scroll animations
     setupIntersectionObserver() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => el.classList.add('active'));
+            return;
+        }
+
         const options = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -238,17 +337,17 @@ class KhedunDigital {
         const menuBtn = document.getElementById('menu-btn');
         if (menuBtn) {
             menuBtn.setAttribute('aria-label', 'Toggle mobile menu');
-            menuBtn.setAttribute('aria-expanded', 'false');
         }
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                const mobileMenu = document.getElementById('mobile-menu');
-                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                    menuBtn.setAttribute('aria-expanded', 'false');
-                    menuBtn.focus();
+                const isMenuOpen = menuBtn && menuBtn.getAttribute('aria-expanded') === 'true';
+                if (isMenuOpen && typeof this.closeMobileMenu === 'function') {
+                    this.closeMobileMenu();
+                    if (menuBtn) {
+                        menuBtn.focus();
+                    }
                 }
             }
         });
@@ -323,6 +422,11 @@ class AdvancedFeatures {
     setupParticles() {
         const particlesContainer = document.querySelector('.particles');
         if (!particlesContainer) return;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+            window.matchMedia('(pointer: coarse)').matches) {
+            return;
+        }
 
         for (let i = 0; i < 50; i++) {
             const particle = document.createElement('div');

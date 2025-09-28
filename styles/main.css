@@ -82,6 +82,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+body.no-scroll {
+    overflow: hidden;
+}
+
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
@@ -346,24 +350,25 @@ button:focus {
 
     /* Hero section optimization */
     .hero {
-        min-height: 80vh;
-        padding: 2rem 0;
+        min-height: auto;
+        padding: 2.75rem 0 2.25rem;
     }
 
     .hero-content {
         text-align: center;
         padding: 1.5rem 1rem;
+        gap: 1.5rem;
     }
 
     .hero-title {
-        font-size: 2.25rem;
-        line-height: 1.2;
+        font-size: clamp(1.9rem, 6vw, 2.4rem);
+        line-height: 1.25;
     }
 
     .hero-subtitle {
-        font-size: 1rem;
+        font-size: clamp(1rem, 4vw, 1.1rem);
         margin-bottom: 1.5rem;
-        line-height: 1.4;
+        line-height: 1.45;
     }
 
     .hero-cta {
@@ -374,7 +379,7 @@ button:focus {
 
     .hero-cta .btn {
         width: 100%;
-        max-width: 280px;
+        max-width: 22rem;
         margin: 0;
     }
 
@@ -382,6 +387,9 @@ button:focus {
     .service-card {
         margin-bottom: 1.5rem;
         max-width: 100%;
+        padding: var(--space-lg) var(--space-md);
+        text-align: left;
+        align-items: flex-start;
     }
 
     /* Navigation mobile optimization */
@@ -421,23 +429,35 @@ button:focus {
     }
 }
 
+@media (max-width: 640px) {
+    .future-assistant-wrapper,
+    .floating-cta {
+        display: none;
+    }
+}
+
 /* Mobile Portrait */
 @media (max-width: 480px) {
     /* Very small screens */
     .hero-title {
-        font-size: 1.875rem;
-        line-height: 1.3;
+        font-size: clamp(1.65rem, 8vw, 2.05rem);
+        line-height: 1.35;
     }
 
     .hero-subtitle {
-        font-size: 0.95rem;
+        font-size: clamp(0.95rem, 4.6vw, 1.05rem);
         margin-bottom: 1.25rem;
+        line-height: 1.45;
     }
 
     /* Compact buttons */
     .btn {
         padding: 0.625rem 1.25rem;
         font-size: 0.95rem;
+    }
+
+    .hero-cta .btn {
+        max-width: 18rem;
     }
 
     /* Service grid mobile */
@@ -582,5 +602,10 @@ button:focus {
     .stagger-3 {
         opacity: 1;
         transform: none;
+    }
+
+    .hero-logo,
+    .hero-logo-large {
+        animation: none !important;
     }
 }
