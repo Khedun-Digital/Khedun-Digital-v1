@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="styles/components.css">
     <link rel="stylesheet" href="styles/animations.css">
     <link rel="stylesheet" href="src/assets/styles/atom.css">
-    <link rel="stylesheet" href="orb.css">
 
     <!-- Favicon -->
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
@@ -149,30 +148,7 @@
             </div>
             <div class="hero-visual">
                 <div class="hero-logo-container flex justify-center">
-                    <div class="orb-container">
-                        <div class="wrap">
-                            <div class="c"></div>
-                            <div class="c"></div>
-                            <div class="c"></div>
-                            <div class="c"></div>
-                            <div class="c"></div>
-                            <div class="c"></div>
-                            <div class="c"></div>
-                            <div class="c"></div>
-                            <div class="c"></div>
-                            <div class="c"></div>
-                            <div class="c"></div>
-                            <div class="c"></div>
-                            <div class="c"></div>
-                            <div class="c"></div>
-                            <div class="c"></div>
-                            <div class="c"></div>
-                            <div class="c"></div>
-                            <div class="c"></div>
-                            <div class="c"></div>
-                            <div class="c"></div>
-                        </div>
-                    </div>
+                    <kd-hero-orb class="hero-orb" size="400" spin-speed="0.011" twinkle="0.55"></kd-hero-orb>
                 </div>
             </div>
         </div>
@@ -581,6 +557,9 @@
 
     <!-- Profile Card Component -->
     <script src="src/assets/js/atom.js"></script>
+
+    <!-- Hero orb animation -->
+    <script type="module" src="src/js/hero-orb.js"></script>
 
     <!-- Optional: AOS (Animate On Scroll) -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/components.css">
     <link rel="stylesheet" href="../styles/animations.css">
+    <link rel="stylesheet" href="../styles/galaxy.css">
     <script>
         tailwind.config = {
             theme: {
@@ -109,6 +110,9 @@
                     <a href="#packages" class="btn btn-secondary hover-scale">View Packages</a>
                 </div>
             </div>
+        </div>
+        <div class="galaxy-container" aria-hidden="true">
+            <canvas id="galaxy-canvas"></canvas>
         </div>
         <div class="particles"></div>
     </section>
@@ -317,6 +321,7 @@
     </script>
     <script src="../scripts/main.js"></script>
     <script src="../src/assets/js/reactbits.js"></script>
+    <script type="module" src="../src/js/galaxy.js"></script>
 <script>ReactBits.reveal(".rb-reveal");</script>
 </body>
 </html>
