@@ -64,6 +64,14 @@ khedun-digital/
 - **Three.js**: 3D graphics and effects
 - **Particles.js**: Particle system effects
 
+
+## 📚 Strategic Documentation
+
+The repository now includes planning documents for recreating the website and adapting it into niche-specific sub-company brands:
+
+- [`docs/WEBSITE_RECREATION_GUIDE.md`](docs/WEBSITE_RECREATION_GUIDE.md) - current architecture, page inventory, styling system, assets, and a step-by-step recreation checklist.
+- [`docs/NICHE_SUBCOMPANY_STRATEGY_AND_IMPROVEMENTS.md`](docs/NICHE_SUBCOMPANY_STRATEGY_AND_IMPROVEMENTS.md) - sub-company brand strategy, niche content templates, positioning examples, and a detailed improvement roadmap.
+
 ## 🚀 Getting Started
 
 ### Prerequisites
